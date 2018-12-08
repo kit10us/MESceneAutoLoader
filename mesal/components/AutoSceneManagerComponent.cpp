@@ -47,7 +47,7 @@ void AutoSceneManagerComponent::OnSceneStart( IScene * scene )
 	{
 		qxml::Document doc( path );
 
-		for (auto & itr = doc.GetRoot()->Children( "assets" ).begin(); itr != doc.GetRoot()->Children().end(); ++itr)
+		for (auto & itr = doc.GetRoot()->Children( "asset" ).begin(); itr != doc.GetRoot()->Children().end(); ++itr)
 		{
 			auto type = (*itr).GetAttribute< std::string >( "type" );
 			auto name = (*itr).GetAttributeElse< std::string >( "name", std::string() );
