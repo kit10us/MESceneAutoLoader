@@ -8,13 +8,23 @@ namespace mesal
 	namespace component
 	{
 		/// <summary>
-		/// Attaches a SAL scene componenet to every scene.
+		/// Automatically loads assets use by a Mercury scene at OnSceneStart.
 		/// </summary>
 		class AutoSceneManagerComponent : public me::scene::SceneManagerComponent
 		{
 		public:
 			AutoSceneManagerComponent( unify::Path autoPath );
 			~AutoSceneManagerComponent();
+
+			/// <summary>
+			/// Set the path where the scene will look for its asset file.
+			/// </summary>
+			void SetAutoPath( unify::Path path );
+
+			/// <summary>
+			/// Get the path where the scene will looks asset file.
+			/// </summary>
+			unify::Path GetAutoPath() const;
 
 		public: // ISceneComponent... 
 			void OnAttach( me::scene::SceneManager * sceneManager ) override;
@@ -23,12 +33,6 @@ namespace mesal
 			void OnSceneEnd( me::scene::IScene * scene ) override;
 
 		public: // IComponent
-			int GetValueCount() const override;
-			bool ValueExists( std::string ) const override;
-			std::string GetValueName( int index ) const override;
-			int FindValueIndex( std::string name ) const override;
-			std::string GetValue( int index ) const override;
-			bool SetValue( int index, std::string value ) override;
 
 		private:
 			unify::Path m_autoPath;
