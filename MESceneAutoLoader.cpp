@@ -3,22 +3,26 @@
 
 #include <MESceneAutoLoader.h>
 #include <mesal/components/AutoSceneManagerComponent.h>
+#include <me/game/IGame.h>
+#include <me/debug/Block.h>
 #include <memory.h>
 
 extern "C" MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxml::Element * element);
 
 MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxml::Element * element )
 {
+	me::debug::Block block( gameInstance->Debug(), "MESceneAutoLoader::MELoader" );
+
 	// Auto-scene script scene manager component..
 	unify::Path autoPath;
 	if (element->HasElements("auto"))
 	{
 		autoPath = unify::Path( element->GetElement("auto")->GetText() );
-		gameInstance->Debug()->LogLine( "Lau::MELoader", "\"auto\" node found, setting autoPath to \"" + autoPath.ToString() + "\"." );
+		block.LogLine( "auto node found, setting autoPath to \"" + autoPath.ToString() + "\"." );
 	}
 	else
 	{
-		gameInstance->Debug()->LogLine( "Lau::MELoader", "\"auto\" node NOT found." );
+		block.LogLine( "auto node NOT found." );
 	}
 
 	auto autoSceneManagerComponent = new mesal::component::AutoSceneManagerComponent( autoPath + unify::Path( "scene/" ) );

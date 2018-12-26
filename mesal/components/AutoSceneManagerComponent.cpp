@@ -3,6 +3,8 @@
 
 #include <mesal/components/AutoSceneManagerComponent.h>
 #include <me/interop/MyThing.h>
+#include <me/game/IGame.h>
+#include <qxml/Document.h>
 
 using namespace mesal;
 using namespace component;
