@@ -1,32 +1,31 @@
 // Copyright (c) 2002 - 2018, Evil Quail LLC
 // All Rights Reserved
 
-#include <mesal/components/AutoSceneManagerComponent.h>
+#include <mesal/AutoSceneManagerComponent.h>
 #include <me/interop/MyThing.h>
 #include <me/game/IGame.h>
 #include <qxml/Document.h>
 
 using namespace mesal;
-using namespace component;
 using namespace me;
 using namespace scene;
 
 AutoSceneManagerComponent::AutoSceneManagerComponent( unify::Path autoPath )
-	: me::scene::SceneManagerComponent( "SALAutoSceneManagerComponent" )
+	: me::scene::component::SceneManagerComponent( "SALAutoSceneManagerComponent" )
 	, m_autoPath{ autoPath }
 {
 	{
-		me::interop::Getter< const scene::ISceneManagerComponent * > autoPathGetter =
-			[&]( const scene::ISceneManagerComponent * component ) -> std::string {
+		me::interop::Getter< const scene::component::ISceneManagerComponent * > autoPathGetter =
+			[&]( const scene::component::ISceneManagerComponent * component ) -> std::string {
 			return dynamic_cast< const AutoSceneManagerComponent * >(component)->GetAutoPath().ToString();
 		};
-		me::interop::Setter< scene::ISceneManagerComponent * > autoPathSetter =
-			[&]( scene::ISceneManagerComponent * component, std::string value ) {
+		me::interop::Setter< scene::component::ISceneManagerComponent * > autoPathSetter =
+			[&]( scene::component::ISceneManagerComponent * component, std::string value ) {
 			return dynamic_cast< AutoSceneManagerComponent * >(component)->SetAutoPath( unify::Path( value ) );
 		};
 
 		GetLookup()->Add( "autoPath", interop::IValue::ptr{
-			new interop::MyThing< scene::ISceneManagerComponent * >( this, autoPathGetter, autoPathSetter )
+			new interop::MyThing< scene::component::ISceneManagerComponent * >( this, autoPathGetter, autoPathSetter )
 		} );
 	}
 }

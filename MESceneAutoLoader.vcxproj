@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mesal\components\AutoSceneManagerComponent.h" />
+    <ClInclude Include="mesal\AutoSceneManagerComponent.h" />
     <ClInclude Include="MESceneAutoLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="mesal\components\AutoSceneManagerComponent.cpp" />
+    <ClCompile Include="mesal\AutoSceneManagerComponent.cpp" />
     <ClCompile Include="MESceneAutoLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
