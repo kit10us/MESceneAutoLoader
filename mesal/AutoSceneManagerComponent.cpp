@@ -59,16 +59,7 @@ void AutoSceneManagerComponent::OnSceneStart( IScene * scene )
 	unify::Path path( m_autoPath + unify::Path(name + ".xml"));
 	if ( path.Exists() )
 	{
-		qxml::Document doc( path );
-
-		for (auto & itr = doc.GetRoot()->Children( "asset" ).begin(); itr != doc.GetRoot()->Children().end(); ++itr)
-		{
-			auto type = (*itr).GetAttribute< std::string >( "type" );
-			auto name = (*itr).GetAttributeElse< std::string >( "name", std::string() );
-			unify::Path source{ (*itr).GetAttribute< std::string >( "source" ) };
-
-			scene->GetGame()->GetResourceHub().GetManagerRaw( type )->AddResource( name, source );
-		}
+		scene->AddResources( path );
 	}
 
 }
