@@ -11,18 +11,18 @@ extern "C" MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxm
 
 MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxml::Element * element )
 {
-	me::debug::Block block( gameInstance->Debug(), "MESceneAutoLoader::MELoader" );
+	auto block = gameInstance->Debug()->MakeBlock( "MESceneAutoLoader::MELoader" );
 
 	// Auto-scene script scene manager component..
 	unify::Path autoPath;
 	if (element->HasElements("auto"))
 	{
 		autoPath = unify::Path( element->GetElement("auto")->GetText() );
-		block.LogLine( "auto node found, setting autoPath to \"" + autoPath.ToString() + "\"." );
+		block->Log( "auto node found, setting autoPath to \"" + autoPath.ToString() + "\"." );
 	}
 	else
 	{
-		block.LogLine( "auto node NOT found." );
+		block->Log( "auto node NOT found." );
 	}
 
 	auto autoSceneManagerComponent = new mesal::AutoSceneManagerComponent( autoPath + unify::Path( "scene/" ) );
