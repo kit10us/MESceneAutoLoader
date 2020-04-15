@@ -9,9 +9,9 @@
 
 extern "C" MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxml::Element * element);
 
-MESALDLL_API bool MELoader( me::game::IGame * gameInstance, const qxml::Element * element )
+MESALDLL_API bool MELoader( me::game::IGame* gameInstance, const qxml::Element* element )
 {
-	auto block = gameInstance->Debug()->MakeBlock( "MESceneAutoLoader::MELoader" );
+	auto block = gameInstance->Debug()->GetLogger()->CreateBlock( "MELoader \"MESceneAutoLoader\"" );
 
 	// Auto-scene script scene manager component..
 	unify::Path autoPath;
