@@ -45,15 +45,17 @@ AutoSceneManagerComponent::~AutoSceneManagerComponent()
 {
 }
 
-void AutoSceneManagerComponent::OnAttach( SceneManager * sceneManager )
+unify::Result<> AutoSceneManagerComponent::OnAttach( SceneManager * sceneManager )
 {
+	return {};
 }
 
-void AutoSceneManagerComponent::OnDetach( SceneManager * sceneManager )
+unify::Result<> AutoSceneManagerComponent::OnDetach( SceneManager * sceneManager )
 {
+	return {};
 }
 
-void AutoSceneManagerComponent::OnSceneStart( IScene * scene )
+unify::Result<> AutoSceneManagerComponent::OnSceneStart( IScene * scene )
 {
 	std::string name = scene->GetName();
 	unify::Path path( m_autoPath + unify::Path(name + ".xml"));
@@ -61,9 +63,10 @@ void AutoSceneManagerComponent::OnSceneStart( IScene * scene )
 	{
 		scene->AddResources( path );
 	}
-
+	return {};
 }
 
-void AutoSceneManagerComponent::OnSceneEnd( IScene * scene )
+unify::Result<> AutoSceneManagerComponent::OnSceneEnd( IScene * scene )
 {
+	return {};
 }

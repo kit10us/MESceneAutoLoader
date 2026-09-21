@@ -25,10 +25,10 @@ namespace mesal
 		unify::Path GetAutoPath() const;
 
 	public: // ISceneComponent... 
-		void OnAttach( me::scene::SceneManager * sceneManager ) override;
-		void OnDetach( me::scene::SceneManager * sceneManager ) override;
-		void OnSceneStart( me::scene::IScene * scene ) override;
-		void OnSceneEnd( me::scene::IScene * scene ) override;
+		unify::Result<> OnAttach( me::scene::SceneManager * sceneManager ) override;
+		unify::Result<> OnDetach( me::scene::SceneManager * sceneManager ) override;
+		unify::Result<> OnSceneStart( me::scene::IScene * scene ) override;
+		unify::Result<> OnSceneEnd( me::scene::IScene * scene ) override;
 
 	public: // IComponent
 
