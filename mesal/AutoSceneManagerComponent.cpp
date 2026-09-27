@@ -61,7 +61,11 @@ unify::Result<> AutoSceneManagerComponent::OnSceneStart( IScene * scene )
 	unify::Path path( m_autoPath + unify::Path(name + ".xml"));
 	if ( path.Exists() )
 	{
-		scene->AddResources( path );
+		auto result = scene->AddResources( path );
+		if (!result)
+		{
+			return result;
+		}
 	}
 	return {};
 }
